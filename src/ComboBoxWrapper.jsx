@@ -6,9 +6,10 @@ const ComboBoxWrapper = props => {
 
   customElements.whenDefined("vaadin-combo-box").then(function() {
     const comboBox = document.querySelector("vaadin-combo-box");
+    
 
     comboBox.addEventListener("value-changed", function() {
-      props.valueChanged(vaadin.current.value);
+      props.valueChanged( vaadin.current.value);
     });
 
     comboBox.addEventListener("custom-value-set", function(e) {
@@ -19,8 +20,10 @@ const ComboBoxWrapper = props => {
       props.valueChanged(e.detail);
     });
 
-    vaadin.current.items = props.values;
-    vaadin.current.value = props.values[0];
+    //whenDefined gets called 2x on the first render and 2 more times when value changes
+    vaadin.current.items = vaadin.current.items || props.values;
+    vaadin.current.value = vaadin.current.value || props.values[0];
+  
   });
 
   return (
