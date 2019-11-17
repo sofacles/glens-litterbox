@@ -2,21 +2,22 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 200px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.container .row {
+  display: flex;
+  justify-content: center;
+  flex: 1 1 0;
+}
+
+.container .row div{
+  /* I want the children of this row to not expand to fill all available space.  
+  */
+  
+  justify-content: center;
 }
