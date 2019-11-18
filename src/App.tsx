@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import FlexSelect from "./flex-select";
 
 const App: React.FC = () => {
+
+  const [showCustomInput, setShowCustomInput] = useState(false);
+  const [customTextVal, setCustomTextVal] = useState("");
+  const [desiredSelectedValueOfFlexSelect, setDesiredSelectedValueOfFlexSelect] = useState("b");
+  const [stringsImShowing, setStringsImShowing] = useState(["a", "b", "c", "other"]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <FlexSelect selectedValue={desiredSelectedValueOfFlexSelect} userWantsToCreateCustomValue={(showInputBox: boolean) => {
+        setShowCustomInput(showInputBox);
+      }} StringsToShow={stringsImShowing} />
+      <div>
+        customTextVal: <input value={customTextVal} onChange={(e) => {
+          setCustomTextVal(e.target.value);
+        }} />
+      </div>
+      <div>
+        showCustomInput: <input type="checkbox" checked={showCustomInput} />
+      </div>
+      <div>
+        customTextVal: <span>{customTextVal}</span>
+      </div>
+      <div>
+        Command: <button onClick={(e) => {
+          setStringsImShowing([ customTextVal ].concat( stringsImShowing ));
+          setDesiredSelectedValueOfFlexSelect(customTextVal);
+        }}>Add String </button>
+      </div>
     </div>
   );
 }
