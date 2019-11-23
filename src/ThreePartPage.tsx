@@ -1,7 +1,11 @@
 import React from "react";
 
-
-const ThreePartPage = props => {
+interface props {
+  makeFirstPart: () => JSX.Element,
+  makeSecondPart: () => JSX.Element,
+  makeThirdPart: () => JSX.Element,
+}
+const ThreePartPage = (props: props) => {
   return (<article>
   <div className="first-bracket">{props.makeFirstPart()}</div>
   <div className="second-bracket">{props.makeSecondPart()}</div>
