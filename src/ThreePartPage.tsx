@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css"
 
 interface props {
   makeFirstPart: () => JSX.Element,
@@ -6,11 +7,11 @@ interface props {
   makeThirdPart: () => JSX.Element,
 }
 const ThreePartPage = (props: props) => {
-  return (<article>
-  <div className="first-bracket">{props.makeFirstPart()}</div>
-  <div className="second-bracket">{props.makeSecondPart()}</div>
-  <div className="third-bracket">{props.makeThirdPart()}</div>
-  </article>);
+  return (<div className="carousel">
+  <>{props.makeFirstPart()}</>
+  <>{props.makeSecondPart()}</>
+  <>{props.makeThirdPart()}</>
+  </div>);
 };
 
 export default ThreePartPage;

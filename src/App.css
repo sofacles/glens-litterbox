@@ -2,21 +2,19 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.carousel {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 500px;
 }
 
-.App-link {
-  color: #09d3ac;
-}
+.backButton {
+  flex: 1 1 10px;
+} 
+
+.stage {
+  flex: 1 1 1000px;
+} 
+
+.forwardButton {
+  flex: 1 1 10px;
+} 

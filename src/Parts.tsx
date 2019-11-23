@@ -1,13 +1,13 @@
 import React from "react";
 
 const FirstPart = () : JSX.Element => {
-    return <div> I am the first part</div>;
+    return <div className="backButton"> &lt; </div>;
   };
   const SecondPart = () : JSX.Element => {
-    return <div> I am the second part</div>;
+    return <div className="stage"> The Stage</div>;
   };
   const ThirdPart = () : JSX.Element => {
-    return <div> I am the first part</div>;
+    return <div className="forwardButton"> &gt;</div>;
   };
 
 
