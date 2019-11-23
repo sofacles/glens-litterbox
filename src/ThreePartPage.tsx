@@ -4,9 +4,9 @@ import GoForward from "./GoForward";
 import "./App.css"
 
 interface props {
-  makeFirstPart: () => JSX.Element,
-  makeSecondPart: () => JSX.Element,
-  makeThirdPart: () => JSX.Element,
+  makeVisualBackButton: () => JSX.Element,
+  makeStagingArea: () => JSX.Element,
+  makeVisualForwardButton: () => JSX.Element,
 }
 const ThreePartPage = (props: props) => {
 
@@ -18,9 +18,9 @@ const ThreePartPage = (props: props) => {
     console.log("Forward command")
   };
   return (<div className="carousel">
-  <GoBack goBackCommand={back}>{props.makeFirstPart()}</GoBack>
-  <>{props.makeSecondPart()}</>
-  <GoForward goForwardCommand={forward}>{props.makeThirdPart()}</GoForward>
+  <GoBack goBackCommand={back}>{props.makeVisualBackButton()}</GoBack>
+  <>{props.makeStagingArea()}</>
+  <GoForward goForwardCommand={forward}>{props.makeVisualForwardButton()}</GoForward>
   </div>);
 };
 

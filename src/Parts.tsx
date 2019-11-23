@@ -1,15 +1,15 @@
 import React from "react";
 let style = {fontSize: "2rem"};
-const FirstPart = () : JSX.Element => {
-  
+
+const PurelyVisualBackButton = () : JSX.Element => {
     return <div style={style}> &lt; </div>;
   };
-  const SecondPart = () : JSX.Element => {
-    return <div className="stage"> <img src="images/image1.png" /></div>;
+  const StagingArea = () : JSX.Element => {
+    return <div className="stage"> <img alt="what should I put in here, the alt text is going to vary with the i.m.g." src="images/image1.png" /></div>;
   };
-  const ThirdPart = () : JSX.Element => {
-    return <div style={style}> &gt;</div>;
+  const PurelyVisualForwardButton = () : JSX.Element => {
+    return <div style={style}> &gt; </div>;
   };
 
 
-  export {FirstPart, SecondPart, ThirdPart};
+  export {PurelyVisualBackButton, StagingArea, PurelyVisualForwardButton};
