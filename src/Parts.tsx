@@ -1,12 +1,12 @@
 import React from "react";
 
-const FirstPart = () => {
+const FirstPart = () : JSX.Element => {
     return <div> I am the first part</div>;
   };
-  const SecondPart = () => {
+  const SecondPart = () : JSX.Element => {
     return <div> I am the second part</div>;
   };
-  const ThirdPart = () => {
+  const ThirdPart = () : JSX.Element => {
     return <div> I am the first part</div>;
   };
 
