@@ -1,15 +1,17 @@
 import React from 'react';
-import ThreePartPage from "./ThreePartPage"
+import CarouselViewer from "./CarouselViewer"
 import './App.css';
-import { PurelyVisualBackButton, StagingArea, PurelyVisualForwardButton } from './Parts';
+import { PurelyVisualBackButton, PurelyVisualForwardButton } from './Parts';
+import Carousel from "./Carousel";
 
 
 const App: React.FC = () => {
+  const imageMan = "images/image1.png"
   return (
     <div className="App">
-      <ThreePartPage
+      <CarouselViewer
         makeVisualBackButton={PurelyVisualBackButton}
-        makeStagingArea={StagingArea}
+        stagingArea={<Carousel src={imageMan} />}
         makeVisualForwardButton={PurelyVisualForwardButton}
       />
     </div>
