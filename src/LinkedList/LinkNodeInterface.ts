@@ -1,4 +1,4 @@
-export interface LinkNodeInterface {
-    next?: LinkNodeInterface,
-    cargo: string
+export interface LinkNodeInterface<t> {
+    next?: LinkNodeInterface<t>,
+    cargo: t
 };

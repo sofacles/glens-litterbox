@@ -1,24 +1,24 @@
 import {LinkNodeInterface} from "./LinkNodeInterface";
 
 
-class SinglyLinkedNode implements LinkNodeInterface {
-    public cargo: string = "";
-    public next?: SinglyLinkedNode;
+class SinglyLinkedNode<t> implements LinkNodeInterface<t> {
+    public cargo: t;
+    public next?: SinglyLinkedNode<t>;
 
-    constructor(c: string, n? : LinkNodeInterface) {
+    constructor(c: t, n? : LinkNodeInterface<t>) {
         this.cargo = c;
         this.next = n;
     }
 }
 
-class SingleLinkedList {
-    private head: SinglyLinkedNode;
-    constructor( head: SinglyLinkedNode) {
+class SingleLinkedList<t> {
+    private head: SinglyLinkedNode<t>;
+    constructor( head: SinglyLinkedNode<t>) {
         this.head = head;
     }
 
     public printNodes(): void {
-        let linkNode: LinkNodeInterface | undefined = this.head;
+        let linkNode: LinkNodeInterface<t> | undefined = this.head;
         console.log(linkNode.cargo);
         while (linkNode.next !== undefined) {
           linkNode = linkNode.next;
