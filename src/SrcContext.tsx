@@ -1,6 +1,11 @@
 import React, { createContext, useState, useRef } from "react";
+import { ContextInterface } from "./ContextInterface";
 
-const SrcContext = createContext({});
+const SrcContext = createContext<ContextInterface>({
+  state: {src: ""},
+  IncrementIndex: () => {},
+  DecrementIndex: () => {},
+});
 
 const SrcContextProvider = (props : any) => {
   const [state, setState] = useState({ src: "a.jpg" });
