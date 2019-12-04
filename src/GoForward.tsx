@@ -1,16 +1,14 @@
-import React, {ReactNode, useContext} from "react";
-import {SrcContext} from "./SrcContext";
+import React, { ReactNode } from "react";
 
 type props = {
     goForwardCommand: () => void,
     children: ReactNode
 }
-const GoForward  = (props: props) => {
-    const { IncrementIndex } = useContext(SrcContext);
+const GoForward = (props: props) => {
     return <div className="arrowButton" onClick={(e) => {
-       IncrementIndex();
+        props.goForwardCommand();
     }}>
-    {props.children}
+        {props.children}
     </div>
 }
 

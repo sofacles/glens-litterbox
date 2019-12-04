@@ -24,6 +24,7 @@ const SrcContextProvider = (props : any) => {
   };
 
   const DecrementIndex = () => {
+      debugger;
     if (index.current === 0) {
       index.current = images.length - 1;
     } else {
@@ -32,6 +33,7 @@ const SrcContextProvider = (props : any) => {
     
     setState({ src: images[index.current] });
   };
+  
   return (
     <SrcContext.Provider value={{state, IncrementIndex, DecrementIndex}}>
       {props.children}

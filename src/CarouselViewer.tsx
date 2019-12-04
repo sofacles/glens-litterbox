@@ -1,37 +1,29 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import GoBack from "./GoBack";
 import GoForward from "./GoForward";
 import ThreePartProps from "./ThreePartProps";
-import {SrcContextProvider} from "./SrcContext"
+import { SrcContext } from "./SrcContext"
 import "./App.css"
-import Carousel from "./Carousel";
+import StagingArea from "./StagingArea";
+import { ContextInterface } from "./ContextInterface";
 
 
 const CarouselViewer = (props: ThreePartProps) => {
-
-  const images = props.items;
-  const [currentIndex, setCurrentIndex] =  useState(0)
+  const obj = useContext<ContextInterface>(SrcContext);
+  
   const back = () => {
-    if(currentIndex === 0){
-      setCurrentIndex(images.length - 1);
-    } else {
-      setCurrentIndex((currentIndex) => (currentIndex - 1));
-    }
+    obj.DecrementIndex();
   };
 
   const forward = () => {
-    if(currentIndex === images.length - 1){
-      setCurrentIndex( currentIndex - 1);
-    } else {
-      setCurrentIndex((currentIndex) => (currentIndex + 1));
-    }
+    obj.IncrementIndex();
   };
+
   return (<div className="carousel">
-    <SrcContextProvider>
-  <GoBack goBackCommand={back}>{props.makeVisualBackButton()}</GoBack>
-  <Carousel src={"images/" + images[currentIndex]} />
-  <GoForward goForwardCommand={forward}>{props.makeVisualForwardButton()}</GoForward>
-  </SrcContextProvider>
+   
+      <GoBack goBackCommand={back}>{props.makeVisualBackButton()}</GoBack>
+      <StagingArea src={obj.state.src} />
+      <GoForward goForwardCommand={forward}>{props.makeVisualForwardButton()}</GoForward>
   </div>);
 };
 
