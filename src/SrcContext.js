@@ -1,6 +1,6 @@
 import React, { createContext, useState, useRef } from "react";
 
-const SrcContext = createContext([{}, () => {}]);
+const SrcContext = createContext({});
 
 const SrcContextProvider = props => {
   const [state, setState] = useState({ src: "a.jpg" });
@@ -28,7 +28,7 @@ const SrcContextProvider = props => {
     setState({ src: images[index.current] });
   };
   return (
-    <SrcContext.Provider value={[state, IncrementIndex, DecrementIndex]}>
+    <SrcContext.Provider value={{state, IncrementIndex, DecrementIndex}}>
       {props.children}
     </SrcContext.Provider>
   );
