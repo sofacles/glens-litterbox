@@ -6,17 +6,10 @@ import "./App.css"
 
 const ThreePartPage = (props: ThreePartProps) => {
 
-  const back = () => {
-    console.log("Back command")
-  };
-
-  const forward = () => {
-    console.log("Forward command")
-  };
-  return (<div className="carousel">
-  <GoBack goBackCommand={back}>{props.makeVisualBackButton()}</GoBack>
-  {props.stagingArea}
-  <GoForward goForwardCommand={forward}>{props.makeVisualForwardButton()}</GoForward>
+  return (<div>
+    <GoBack >{props.makeVisualBackButton()}</GoBack>
+    {props.stagingArea}
+    <GoForward>{props.makeVisualForwardButton()}</GoForward>
   </div>);
 };
 

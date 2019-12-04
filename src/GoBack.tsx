@@ -1,12 +1,14 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
+import {SrcContext} from "./SrcContext";
+import { ContextInterface } from "./ContextInterface";
 
 type props = {
-    goBackCommand: () => void,
     children: ReactNode
 }
 const GoBack = (props: props) => {
+    const {DecrementIndex} = useContext<ContextInterface>(SrcContext);
     return <div className="arrowButton" onClick={(e) => {
-        props.goBackCommand();
+       DecrementIndex();
     }}>
         {props.children}
     </div>

@@ -1,29 +1,16 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import GoBack from "./GoBack";
 import GoForward from "./GoForward";
 import ThreePartProps from "./ThreePartProps";
-import { SrcContext } from "./SrcContext"
 import "./App.css"
-import StagingArea from "./StagingArea";
-import { ContextInterface } from "./ContextInterface";
 
 
 const CarouselViewer = (props: ThreePartProps) => {
-  const obj = useContext<ContextInterface>(SrcContext);
-  
-  const back = () => {
-    obj.DecrementIndex();
-  };
-
-  const forward = () => {
-    obj.IncrementIndex();
-  };
 
   return (<div className="carousel">
-   
-      <GoBack goBackCommand={back}>{props.makeVisualBackButton()}</GoBack>
+      <GoBack>{props.makeVisualBackButton()}</GoBack>
       {props.stagingArea}
-      <GoForward goForwardCommand={forward}>{props.makeVisualForwardButton()}</GoForward>
+      <GoForward>{props.makeVisualForwardButton()}</GoForward>
   </div>);
 };
 
