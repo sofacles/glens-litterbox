@@ -8,9 +8,9 @@ const SrcContext = createContext<ContextInterface>({
 });
 
 const SrcContextProvider = (props : any) => {
-  const [state, setState] = useState({ src: "a.jpg" });
+  const [state, setState] = useState({ src: "images/img1.jpg" });
   const index = useRef(0);
-  const images = ["a.jpg", "b.jpg", "c.jpg"];
+  const images = ["images/img1.jpg", "images/img2.jpg", "images/img3.jpg","images/img4.jpg",];
 
   const IncrementIndex = () => {
     const length = images.length;

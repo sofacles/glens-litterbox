@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {SrcContext} from "./SrcContext"
+import {SrcContext} from "./SrcContext";
 import { ContextInterface } from "./ContextInterface";
 
 interface props {
