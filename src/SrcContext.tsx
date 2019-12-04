@@ -2,7 +2,7 @@ import React, { createContext, useState, useRef } from "react";
 
 const SrcContext = createContext({});
 
-const SrcContextProvider = props => {
+const SrcContextProvider = (props : any) => {
   const [state, setState] = useState({ src: "a.jpg" });
   const index = useRef(0);
   const images = ["a.jpg", "b.jpg", "c.jpg"];
