@@ -3,7 +3,6 @@ import GoBack from "./GoBack";
 import GoForward from "./GoForward";
 import ThreePartProps from "./ThreePartProps"
 import "./App.css"
-import StagingArea from "./StagingArea";
 
 const ThreePartPage = (props: ThreePartProps) => {
 
@@ -16,7 +15,7 @@ const ThreePartPage = (props: ThreePartProps) => {
   };
   return (<div className="carousel">
   <GoBack goBackCommand={back}>{props.makeVisualBackButton()}</GoBack>
-  <StagingArea src="images/image1.jpg" />
+  {props.stagingArea}
   <GoForward goForwardCommand={forward}>{props.makeVisualForwardButton()}</GoForward>
   </div>);
 };

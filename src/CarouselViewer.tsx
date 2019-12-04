@@ -22,7 +22,7 @@ const CarouselViewer = (props: ThreePartProps) => {
   return (<div className="carousel">
    
       <GoBack goBackCommand={back}>{props.makeVisualBackButton()}</GoBack>
-      <StagingArea src={obj.state.src} />
+      {props.stagingArea}
       <GoForward goForwardCommand={forward}>{props.makeVisualForwardButton()}</GoForward>
   </div>);
 };

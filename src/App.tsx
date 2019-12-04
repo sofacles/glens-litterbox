@@ -3,6 +3,7 @@ import CarouselViewer from "./CarouselViewer";
 import { SrcContextProvider } from "./SrcContext"
 import './App.css';
 import { PurelyVisualBackButton, PurelyVisualForwardButton } from './Parts';
+import StagingArea from "./StagingArea";
 
 
 const App: React.FC = () => {
@@ -12,7 +13,7 @@ const App: React.FC = () => {
         <CarouselViewer
           makeVisualBackButton={PurelyVisualBackButton}
           makeVisualForwardButton={PurelyVisualForwardButton}
-          items={["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg"]}
+          stagingArea={<StagingArea  />}
         />
       </SrcContextProvider>
     </div>
