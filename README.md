@@ -24,8 +24,16 @@ Both ThreePartPage and Carousel expect props of this type:
   }
   ```
 
-makeVisualBackButton will be called inside the GoBack logical container, which is a div with a click handler.  Same kind of thing for makeVisualForwardButton: it is rendered inside the GoForwardComponent and all it has to do is look good, or look like what you want it to.  The logic of moving back and forth through the items is handled by the logical controls inside of: <GoBack /> and <GoForward />. 
+makeVisualBackButton will be called inside the GoBack logical container, which is a div with a click handler.  Same kind of thing for makeVisualForwardButton: it is rendered inside the GoForwardComponent and all it has to do is look good, or look like what you want it to.  The logic of moving back and forth through the items is handled by the logical controls i.e.
 
+```
+const GoForward = (props: props) => {
+    const {IncrementIndex} = useContext<ContextInterface>(SrcContext);
+    return <div className="arrowButton" onClick={(e) => {
+        IncrementIndex();
+    }}>
+        {props.children}
+    </div>
+}
+```
 
-
-I 
