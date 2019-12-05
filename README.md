@@ -7,17 +7,20 @@ I found [his talk](https://www.youtube.com/watch?v=ZyEkJQeAcGU) inspiring and I 
 Although I don't use it as a base class or anything, ThreePartPage is a logical container, with logic components that provide the functionality of forward and back buttons and expect a children prop which will be the purely visual, and swappable components.     CarouselViewer is a more concrete example of the idea.  Here is what it returns:
 
 ```
-    return (<div className="carousel">
+return (<div className="carousel">
       <GoBack>{props.makeVisualBackButton()}</GoBack>
       {props.stagingArea}
       <GoForward>{props.makeVisualForwardButton()}</GoForward>
-    </div>);```
+    </div>);
+    
+```
 
 
 Both ThreePartPage and Carousel expect props of this type:
 
 
-```interface ThreePartProps {
+```
+interface ThreePartProps {
     makeVisualBackButton: () => JSX.Element,
     stagingArea: JSX.Element,
     makeVisualForwardButton: () => JSX.Element,
