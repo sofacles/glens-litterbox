@@ -81,12 +81,4 @@ const CalculateCountdownNumbers = (countdownStartTime, countdownStopTime) => {
   };
 };
 
-function isLastDayOfMonth(dt) {
-  var test = new Date(dt.getTime()),
-    month = test.getMonth();
-
-  test.setDate(test.getDate() + 1);
-  return test.getMonth() !== month;
-}
-
 export { CalculateCountdownNumbers };

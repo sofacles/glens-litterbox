@@ -1,5 +1,5 @@
 import React from "react";
-import { CalculateCountdownNumbers } from "./CountdownMessage/CountdownMessageHelper";
+import { CalculateCountdownNumbers } from "./CountdownMessage/CalculateCountdownNumbers";
 
 
 const CountdownWithUseState = () => {

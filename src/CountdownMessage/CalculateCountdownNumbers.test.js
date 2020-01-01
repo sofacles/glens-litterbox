@@ -1,4 +1,4 @@
-import { CalculateCountdownNumbers } from "./CountdownMessageHelper";
+import { CalculateCountdownNumbers } from "./CalculateCountdownNumbers";
 
 describe("Downdown", () => {
 
