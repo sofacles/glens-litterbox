@@ -62,17 +62,11 @@ const CalculateCountdownNumbers = (countdownStartTime, countdownStopTime) => {
   // Now we are less than a minute away from the endDate
   while (pointer < endDate) {
     secondsLeft += 1;
-    if (pointer.getSeconds() === 59) {
-      pointer.setMinutes(pointer.getMinutes() + 1);
-      pointer.setSeconds(0);
-    } else {
-      pointer.setSeconds(pointer.getSeconds() + 1);
-    }
+    pointer.setSeconds(pointer.getSeconds() + 1);
   }
 
   return {
     yearsLeft,
-    runningTotalDate: pointer,
     monthsLeft,
     daysLeft,
     hoursLeft,
