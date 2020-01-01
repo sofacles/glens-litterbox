@@ -1,5 +1,5 @@
 import React from "react";
-import CountdownMessageHelper from "./CountdownMessage/CountdownMessageHelper";
+import { CalculateCountdownNumbers } from "./CountdownMessage/CountdownMessageHelper";
 
 
 const CountdownWithUseState = () => {
@@ -10,9 +10,9 @@ const CountdownWithUseState = () => {
         hoursLeft,
         minutesLeft,
         secondsLeft
-   } = CountdownMessageHelper(new Date(2000, 11, 31, 22, 15), new Date(2001, 0, 1, 3, 16));
+   } = CalculateCountdownNumbers(new Date(2019, 6, 27, 12, 50, 30), new Date(2024, 11, 25, 14, 45, 36));
    
-   // 
+   
    
     return <div>{`${yearsLeft} years ${monthsLeft} months ${daysLeft} days ${hoursLeft} hours ${minutesLeft} minutes ${secondsLeft} seconds till...`}</div>
 };
