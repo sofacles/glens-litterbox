@@ -1,37 +1,89 @@
 const CountDownMessageHelper = (countdownStartTime, countdownStopTime) => {
   const endDate = countdownStopTime;
-  let rightNow = countdownStartTime;
-  const DAY_MSEC = 1000 * 60 * 60 * 24;
-  const YEAR_MSEC = DAY_MSEC * 365;
-  debugger;
-  let timeDiff = endDate - rightNow;
-  
+  //I will advance this pointer by years, months, etc into  the future till I hit endDate
+  let pointer = new Date(countdownStartTime.getTime());
+  const HOUR_MSEC = 60 * 60 * 1000;
+  let yearsLeft = 0,
+    monthsLeft = 0,
+    daysLeft = 0,
+    hoursLeft = 0,
+    minutesLeft = 0,
+    secondsLeft = 0;
+ 
+
   //first figure out whole years of difference
-  let yearsLeft = Math.floor(timeDiff / YEAR_MSEC);
-  // Move the running total back in time as you nibble away the parts of the date
-  let runningTotal = timeDiff - yearsLeft * YEAR_MSEC; //just a number
-  let runningTotalDate = new Date(runningTotal);
-  runningTotalDate.setFullYear(endDate.getFullYear() - yearsLeft);
-
-  // So, I can't just say months are 30 days long, I need to get the month of rightNow
-  // and see if it is greater than the month of endDate
-
-  let months;
-
-  if (endDate.getMonth() < rightNow.getMonth()) {
-    months = endDate.getMonth() - rightNow.getMonth();
-  } else {
-    months = 11 - endDate.getMonth() + rightNow.getMonth() + 1;
+  while (pointer.getFullYear() + 1 < endDate.getFullYear()) {
+    yearsLeft += 1;
+    pointer.setFullYear(pointer.getFullYear() + 1);
   }
-  runningTotalDate.setMonths(months);
-  let daysLeft = Math.floor(runningTotal / DAY_MSEC);
+
+  // Now we are less than a year away from the endDate
+  let oneMonthAfterPointer = new Date(pointer.getTime()).setMonth(
+    pointer.getMonth() + 1
+  );
+  while (oneMonthAfterPointer < endDate) {
+    monthsLeft += 1;
+    pointer.setMonth(pointer.getMonth() + 1);
+  }
+
+  // Now we are less than a month away from the endDate
+  let oneDayAfterPointer = new Date(pointer.valueOf());
+  oneDayAfterPointer.setDate(oneDayAfterPointer.getDate() + 1);
+
+  while (oneDayAfterPointer <= endDate) {
+    daysLeft += 1;
+    pointer.setDate(pointer.getDate() + 1);
+    oneDayAfterPointer.setDate(oneDayAfterPointer.getDate() + 1);
+  }
+
+  // Now we are less than a day away from the endDate
+  let oneHourAfterPointer = new Date(pointer.valueOf() + HOUR_MSEC);
+
+  debugger;
+  while (oneHourAfterPointer <= endDate) {
+    hoursLeft += 1;
+    pointer.setHours(pointer.getHours() + 1);
+    oneHourAfterPointer = new Date(pointer.valueOf() + HOUR_MSEC);
+  }
+
+   // Now we are less than an hour away from the endDate
+   const MINUTE_MSEC = 60 * 1000;
+   let oneMinuteAfterPointer = new Date(pointer.valueOf() + MINUTE_MSEC);
+
+  while (oneMinuteAfterPointer <= endDate) {
+    minutesLeft += 1;
+    pointer.setMinutes(pointer.getMinutes() + 1);
+    oneMinuteAfterPointer = new Date(pointer.valueOf() + MINUTE_MSEC);
+  }
+
+   // Now we are less than a minute away from the endDate
+  while (pointer < endDate) {
+    secondsLeft += 1;
+    if(pointer.getSeconds() === 59) {
+      pointer.setMinutes(pointer.getMinutes() + 1);
+      pointer.setSeconds(0)
+    } else {
+      pointer.setSeconds(pointer.getSeconds() + 1);
+    }
+  }
 
   return {
     yearsLeft,
-    runningTotalDate,
-    months,
-    daysLeft
+    runningTotalDate: pointer,
+    monthsLeft,
+    daysLeft,
+    hoursLeft, 
+    minutesLeft,
+    secondsLeft
   };
 };
+
+function isLastDayOfMonth(dt) {
+  var test = new Date(dt.getTime()),
+    month = test.getMonth();
+
+  test.setDate(test.getDate() + 1);
+  return test.getMonth() !== month;
+}
 
 export default CountDownMessageHelper;
