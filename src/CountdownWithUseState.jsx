@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { CalculateCountdownNumbers } from "./CountdownMessage/CalculateCountdownNumbers";
 
-
 const CountdownWithUseState = () => {
-   let { 
-       yearsLeft,
-        monthsLeft,
-        daysLeft,
-        hoursLeft,
-        minutesLeft,
-        secondsLeft
-   } = CalculateCountdownNumbers(new Date(2019, 6, 27, 12, 50, 30), new Date(2024, 11, 25, 14, 45, 36));
-   
-   
-   
-    return <div>{`${yearsLeft} years ${monthsLeft} months ${daysLeft} days ${hoursLeft} hours ${minutesLeft} minutes ${secondsLeft} seconds till...`}</div>
+  const [cc, setCurrentCountdown] = useState(() => {
+    CalculateCountdownNumbers(new Date(), new Date(2024, 11, 25, 14, 45, 36));
+  });
+
+  const timer = window.setInterval(() => {
+    setCurrentCountdown(
+      CalculateCountdownNumbers(new Date(), new Date(2024, 11, 25, 14, 45, 36))
+    );
+  }, 1000);
+
+  return (
+      !cc ? <div></div> :  
+    <div>{`${cc.yearsLeft} years ${cc.monthsLeft} months ${cc.daysLeft} days ${cc.hoursLeft} hours ${cc.minutesLeft} minutes ${cc.secondsLeft} seconds till...`}</div>
+  );
 };
 
 export default CountdownWithUseState;
