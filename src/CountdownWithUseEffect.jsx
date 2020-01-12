@@ -1,36 +1,29 @@
-import React, { useEffect, useRef, useState } from "react";
-import { CalculateCountdownNumbers } from "./CountdownMessage/CalculateCountdownNumbers";
+import React, { useState, useEffect } from "react";
+import CountdownMessage from "./CountdownMessage/CountdownMessage";
 
-/**
- * When I try to useEffect for a countdown, I get an error about the value of cc being lost every time this thing
- * renders.  "To preserve this value over time" use useRef (useRef.current).
- */
 const CountdownWithUseEffect = () => {
-  let startTime = new Date();
-  let myCountdown = CalculateCountdownNumbers(startTime);
-  const [countdown, setCountdown] = useState(myCountdown);
-  const countdownRef = useRef(null);
- 
+  const [expDate, setExpDate] = useState(new Date());
+
+  const [cc, setCC] = useState(null);
+  console.log("inside my component");
+
   useEffect(() => {
-    console.log("inside useEffect");
+    console.log("at the top of useEffect")
+    let expirationDate = new Date();
+    expirationDate.setMonth(expirationDate.getMonth() + 1);
+    setExpDate(expirationDate);
+
     const timer = window.setInterval(() => {
-      
-      let currentTime = new Date();
-      console.log("inside timer, currentTime.seconds is: " + currentTime.getSeconds());
-      let newCountdown = CalculateCountdownNumbers(currentTime);
-      console.log("inside timer, newCountdown.secondsLeft is: " + newCountdown.secondsLeft);
-      countdownRef.current = newCountdown;
-      setCountdown(newCountdown);
+      setCC(CountdownMessage(expirationDate));
     }, 1000);
-    //return clearInterval(timer);
-    
-   
+
   }, []);
 
-
-  return (
-      !countdown ? <div></div> :  
-    <div>{`${countdown.yearsLeft} years ${countdown.monthsLeft} months ${countdown.daysLeft} days ${countdown.hoursLeft} hours ${countdown.minutesLeft} minutes ${countdown.secondsLeft} seconds till...`}</div>
+ 
+  return !cc ? (
+    <div></div>
+  ) : (
+    <div>{`${cc.yearsLeft} years ${cc.monthsLeft} months ${cc.daysLeft} days ${cc.hoursLeft} hours ${cc.minutesLeft} minutes ${cc.secondsLeft} seconds till...`}</div>
   );
 };
 

@@ -1,8 +1,8 @@
-import CalculateCountdownNumbers from "./CalculateCountdownNumbers";
+import { CalculateCountdownNumbers } from "./CalculateCountdownNumbers";
 
 const CountdownMessage = (countdownStopDate) => {
-    const helper =  CalculateCountdownNumbers(new Date, countdownStopDate);
-    return helper();
+    const helper =  CalculateCountdownNumbers(new Date(), countdownStopDate);
+    return helper;
 }
 
 export default CountdownMessage;
