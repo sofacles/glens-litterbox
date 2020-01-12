@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-//import CountdownWithUseState from "./CountdownWithUseState";
-import CountdownWithUseEffect from "./CountdownWithUseEffect";
+import CalculateCountdownNumbersWithUseState from "./CalculateCountdownNumbersWithUseState";
+//import CountdownWithUseEffect from "./CountdownWithUseEffect";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <CountdownWithUseEffect />
+      <CalculateCountdownNumbersWithUseState />
     </div>
   );
 }

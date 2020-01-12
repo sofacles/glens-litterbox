@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { CalculateCountdownNumbers } from "./CountdownMessage/CalculateCountdownNumbers";
 
-const CountdownWithUseState = () => {
+const endDate = new Date(2024, 11, 25, 14, 45, 36);
+
+const CalculateCountdownNumbersWithUseState = () => {
+  //this line of code runs n times where n sort of doubles every second
+  console.log("running my functional component...")
   const [cc, setCurrentCountdown] = useState(() => {
-    CalculateCountdownNumbers(new Date(), new Date(2024, 11, 25, 14, 45, 36));
+    console.log("setting state...")
+    //and this only runs once.... ?
+    CalculateCountdownNumbers(new Date(), endDate);
   });
 
   const timer = window.setInterval(() => {
     setCurrentCountdown(
-      CalculateCountdownNumbers(new Date(), new Date(2024, 11, 25, 14, 45, 36))
+      CalculateCountdownNumbers(new Date(), endDate)
     );
   }, 1000);
 
@@ -18,4 +24,4 @@ const CountdownWithUseState = () => {
   );
 };
 
-export default CountdownWithUseState;
+export default CalculateCountdownNumbersWithUseState;
