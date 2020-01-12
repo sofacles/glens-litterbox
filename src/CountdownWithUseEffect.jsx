@@ -17,6 +17,10 @@ const CountdownWithUseEffect = () => {
       setCC(CountdownMessage(expirationDate));
     }, 1000);
 
+    return () => {
+      clearInterval(timer);
+    };
+
   }, []);
 
  
