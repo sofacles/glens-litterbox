@@ -10,6 +10,11 @@ const MainReducer = (state = defaultState, action) => {
                 red: false,
                 yellow: false,
                 green: true
+            };
+        case "COLORS_AVAILABLE":
+            return {
+                ...state,
+                colors: action.payload
             }
         default:
         return state;
