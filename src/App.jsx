@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux"
 import './App.css';
-import { MakeGreen, FetchColors } from "./store/actions";
+import { MakeGreen, FetchColors, SetLoading } from "./store/actions";
 
 const App = (props) => {
- 
+  const {
+    SetLoading, FetchColors
+  } = props;
   useEffect(() => {
-    props.FetchColors();
-  }, []);
+    SetLoading();
+    FetchColors();
+  }, [SetLoading, FetchColors]);
 
   let colorElements = props.colors ? props.colors.map(c => (<li key={c}>{c}</li>)) : [];
   return (
@@ -16,6 +19,7 @@ const App = (props) => {
       <div>
         <button onClick={props.MakeGreen}>Make Green</button>
       </div>
+      <div>{props.loading ? "loading..." : "" }</div>
     <ul>{colorElements}</ul>
 
     </div>
@@ -29,4 +33,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { MakeGreen, FetchColors })( App );
+export default connect(mapStateToProps, { MakeGreen, FetchColors, SetLoading })( App );
