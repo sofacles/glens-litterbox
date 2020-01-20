@@ -1,26 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { SpinnerWhileLoading } from "./SpinnerWhileLoading";
+import FeaturedColorDisplay from "./FeaturedColorDisplay";
 import "./App.css";
 
 const App = () => {
-  const [colors, setColors] = useState(null);
-  useEffect(() => {
-    window.setTimeout(() => {
-      axios.get("/api/healthcheck").then(
-        response => {
-          setColors(response.data.colors);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }, 2000);
-  }, [setColors]);
-
-  let colorElements = colors ? colors.map(c => <li key={c}>{c}</li>) : [];
   return (
     <div className="App">
-      <ul>{colorElements}</ul>
+      <SpinnerWhileLoading
+        content={colors => {
+          return <FeaturedColorDisplay colors={colors} />;
+        }}
+        url="/api/healthcheck"
+      ></SpinnerWhileLoading>
     </div>
   );
 };
