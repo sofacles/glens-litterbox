@@ -1,36 +1,28 @@
-import React, { useEffect } from 'react';
-import { connect } from "react-redux"
-import './App.css';
-import { MakeGreen, FetchColors, SetLoading } from "./store/actions";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./App.css";
 
-const App = (props) => {
-  const {
-    SetLoading, FetchColors
-  } = props;
+const App = () => {
+  const [colors, setColors] = useState(null);
   useEffect(() => {
-    SetLoading();
-    FetchColors();
-  }, [SetLoading, FetchColors]);
+    window.setTimeout(() => {
+      axios.get("/api/healthcheck").then(
+        response => {
+          setColors(response.data.colors);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }, 2000);
+  }, [setColors]);
 
-  let colorElements = props.colors ? props.colors.map(c => (<li key={c}>{c}</li>)) : [];
+  let colorElements = colors ? colors.map(c => <li key={c}>{c}</li>) : [];
   return (
     <div className="App">
-      {props.red ? "red" : "not red"} , {props.green ? "green" : "not green"}
-      <div>
-        <button onClick={props.MakeGreen}>Make Green</button>
-      </div>
-      <div>{props.loading ? "loading..." : "" }</div>
-    <ul>{colorElements}</ul>
-
+      <ul>{colorElements}</ul>
     </div>
   );
-}
+};
 
-const mapStateToProps = (state) => {
-  return {
-    ...state
-  }
-}
-
-
-export default connect(mapStateToProps, { MakeGreen, FetchColors, SetLoading })( App );
+export default App;
