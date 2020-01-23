@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
-import { RatedItem} from "./RatedItem";
+import { RatedItem } from "./RatedItem";
 
 const App = () => {
   const [colors, setColors] = useState(null);
@@ -9,7 +9,11 @@ const App = () => {
     window.setTimeout(() => {
       axios.get("/api/healthcheck").then(
         response => {
-          setColors(response.data.colors);
+          let ratedColors = {};
+          response.data.colors.forEach(c => {
+            ratedColors[c] = { rating: 3 };
+          });
+          setColors(ratedColors);
         },
         error => {
           console.log(error);
@@ -18,7 +22,23 @@ const App = () => {
     }, 2000);
   }, [setColors]);
 
-  let colorElements = colors ? colors.map(c => <RatedItem text={c} rating={3} key={c}>{c}</RatedItem>) : [];
+  let colorElements = colors
+    ? Object.keys(colors).map(k => (
+        <RatedItem
+          text={k}
+          rating={colors[k].rating}
+          onRatingChange={(n, text) => {
+          
+            setColors({
+              ...colors,
+              [text]: { rating: n }
+            });
+          }}
+          key={k}
+        ></RatedItem>
+      ))
+    : [];
+
   return (
     <div className="App">
       <ul>{colorElements}</ul>
