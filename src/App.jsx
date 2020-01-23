@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
+import { RatedItem} from "./RatedItem";
 
 const App = () => {
   const [colors, setColors] = useState(null);
@@ -17,7 +18,7 @@ const App = () => {
     }, 2000);
   }, [setColors]);
 
-  let colorElements = colors ? colors.map(c => <li key={c}>{c}</li>) : [];
+  let colorElements = colors ? colors.map(c => <RatedItem text={c} rating={3} key={c}>{c}</RatedItem>) : [];
   return (
     <div className="App">
       <ul>{colorElements}</ul>
