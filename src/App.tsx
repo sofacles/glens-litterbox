@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
+import { MultiplyPolynomials } from "./multiplyPolynomials";
+import  LinkedListOfPolynomials, {printLinkedList}  from "./LinkedListOfPolynomials";
 import './App.css';
 
 const App: React.FC = () => {
+  const left = new LinkedListOfPolynomials([{pow: 0, coef: 4}]);
+  const right = new LinkedListOfPolynomials([{pow: 1, coef: 1}, {pow: 0, coef: 5}]);
+ 
+  let result = MultiplyPolynomials(left, right);
+  let printed = printLinkedList(result)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     {printed}
     </div>
   );
 }
